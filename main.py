@@ -8,7 +8,7 @@ app = Flask(__name__)
 def encrypt_example():
     if request.method == 'POST':
         plainText = request.form.get('plainText')
-        shift = request.form['shift']
+        shift = int(input(request.form['shift']))
         cipherText = caesar(plainText, shift)
         return '''<h1>ur ciphertext is{}</h1>'''.format(cipherText, shift)
 
