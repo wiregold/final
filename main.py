@@ -13,8 +13,8 @@ def encrypt_example():
             var1 = request.form.get('var1')
             shift = int(var1)
             cipherText = caesar(plainText, shift)
-            return '''<h1>The plainText value is: {}</h1>
-                          <h1>The shift value is: {}</h1>'''.format(cipherText, shift)
+            return '''<h1>The plainText value is:{}</h1>
+                          <h1>The shift value is:{}</h1>'''.format(cipherText, shift)
 
         elif request.form['submit_button'] == 'SubmitDecrypt':
             plainText1 = request.form.get('plainText1')
@@ -22,8 +22,8 @@ def encrypt_example():
             var3 = int(var2)
             shift1 = var3 * -1
             cipherText1 = caesar(plainText1, shift1)
-            return '''<h1>The Unencrypted value is: {}</h1>
-                                      <h1>The shift value is: {}</h1>'''.format(cipherText1, shift1)
+            return '''<h1>The Unencrypted value is:{}</h1>
+                                      <h1>The shift value is:{}</h1>'''.format(cipherText1, shift1)
 
         elif request.form['submit_button'] == 'Submit Substitution':
 
@@ -43,9 +43,9 @@ def encrypt_example():
 
             cipher = encrypt(subtext1, key, alphabet)
 
-            return '''<h1>The Unencrypted value is: {}</h1>
-                      <h1>The Key is: {}</h1>
-                       <h1>The Encrypted Text is: {}</h1>'''.format(subtext1, key, cipher)
+            return '''<h1>The Unencrypted value is:{}</h1>
+                      <h1>The Key is:{}</h1>
+                       <h1>The Encrypted Text is:{}</h1>'''.format(subtext1, key, cipher)
 
         elif request.form['submit_button'] == 'Submit Substitution Decrypt':
             cipher2 = request.form.get('subtext2')
@@ -58,7 +58,7 @@ def encrypt_example():
                 return ''.join(alphabet2[key2Index] for key2Index in key2Indices)
 
             sub2 = decrypt(cipher2, key2, alphabet2)
-            return '''<h1>The Unencrypted value is: {}</h1>'''.format(sub2)
+            return '''<h1>The Unencrypted value is:{}</h1>'''.format(sub2)
 
     return '''<form method="POST">
                   
