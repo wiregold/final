@@ -5,10 +5,12 @@ app = Flask(__name__)
 
 
 @app.route('/', methods=['GET', 'POST'])
-def signup():
-    email = request.form['email']
-    print("The email address is '" + email + "'")
-    return redirect('/')
+def form_example():
+    return '''<form method="POST">
+                  Language: <input type="text" name="language"><br>
+                  Framework: <input type="text" name="framework"><br>
+                  <input type="submit" value="Submit"><br>
+              </form>'''
 
 """"
 def encrypt():
