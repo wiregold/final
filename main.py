@@ -7,17 +7,34 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def encrypt_example():
     if request.method == 'POST':
-        plainText = request.form.get('plainText')
-        var1 = request.form.get('var1')
-        shift = int(var1)
-        cipherText = caesar(plainText, shift)
-        return '''<h1>The plainText value is: {}</h1>
+        if request.form['submit_button'] == 'SubmitEncrypt':
+            plainText = request.form.get('plainText')
+            var1 = request.form.get('var1')
+            shift = int(var1)
+            cipherText = caesar(plainText, shift)
+            return '''<h1>The plainText value is: {}</h1>
                           <h1>The shift value is: {}</h1>'''.format(cipherText, shift)
 
+        elif request.form['submit_button'] == 'SubmitDecrypt':
+            plainText1 = request.form.get('plainText1')
+            var2 = request.form.get('var2')
+            var3 = int(var2)
+            shift1 = var3 * -1
+            cipherText1 = caesar(plainText1, shift1)
+            return '''<h1>The Unencrypted value is: {}</h1>
+                                      <h1>The shift value is: {}</h1>'''.format(cipherText1, shift1)
+
     return '''<form method="POST">
-                  plainText: <input type="text" name="plainText"><br>
-                  shift: <input type="text" name="var1"><br>
-                  <input type="submit" value="Submit"><br>
+                  <h1>Caesar Encryption</h1>  
+                  Insert Plaintext: <input type="text" name="plainText"><br>
+                  Insert Shift Value: <input type="text" name="var1"><br>
+                  <input type="submit" name= "submit_button" value="SubmitEncrypt"><br>
+                  <br><br><br>
+                  
+                  <h1>Caesar Decryption</h1>  
+                  Insert Encrypted Text: <input type="text" name="plainText1"><br>
+                  Insert Shift Value: <input type="text" name="var2"><br>
+                  <input type="submit" name= "submit_button" value="SubmitDecrypt"><br>
               </form>'''
 
 
@@ -26,53 +43,3 @@ def caesar(plaintext, shift):
     shifted_alphabet = alphabet[shift:] + alphabet[:shift]
     table = str.maketrans(alphabet, shifted_alphabet)
     return plaintext.translate(table)
-
-
-"""
-def encrypt():
-    plainText = input("What is your Plaintext?")
-    shift = int(input("What is your shift?"))
-    cipherText = caesar(plainText, shift)
-    print("Your ciphertext is: ", cipherText, "with a shift of", shift)
-    
-def decrpyt():
-    encryption = input("Enter in your encrypted code")
-
-    n = int(input("enter in your encryption shift"))
-    encryption_shift = n * -1
-    cipherText1 = ""
-    cipherText1 = caesar(encryption, encryption_shift)
-    print("Your ciphertext is: ", cipherText1, "with a  negative shift of", encryption_shift)
-
-
-def caesar(plaintext, shift):
-    alphabet = string.ascii_lowercase
-    shifted_alphabet = alphabet[shift:] + alphabet[:shift]
-    table = str.maketrans(alphabet, shifted_alphabet)
-    return plaintext.translate(table)
-
-
-def helloword():
-    print("Hello World!")
-
-
-from tkinter import *
-
-menu = Tk()
-menu.title("menu")
-menu.geometry("300x300")
-
-button0 = Button(menu, text="Hello World", command=helloword)
-button0.pack()
-
-button1 = Button(menu, text="Encrypt", command=encrypt)
-button1.pack()
-
-button2 = Button(menu, text="Decrypt", command=decrpyt)
-button2.pack()
-
-button3 = Button(menu, text="Exit", command=exit)
-button3.pack()
-
-menu.mainloop()
-"""
