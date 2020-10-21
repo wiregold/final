@@ -10,11 +10,11 @@ def encrypt_example():
         plainText = request.form.get('plainText')
         shift = request.form['Shift']
         cipherText = caesar(plainText, shift)
-        return '''<h1>ur ciphertext is{}</h1>'''.format(cipherText)
+        return '''<h1>ur ciphertext is{}</h1>'''.format(cipherText, shift)
 
     return '''<form method="POST">
-                  Language: <input type="text" name="plainText"><br>
-                  Framework: <input type="text" name="shift"><br>
+                  plainText: <input type="text" name="plainText"><br>
+                  shift: <input type="text" name="shift"><br>
                   <input type="submit" value="Submit"><br>
               </form>'''
 
@@ -26,13 +26,15 @@ def caesar(plaintext, shift):
     return plaintext.translate(table)
 
 
+
+
+"""
 def encrypt():
     plainText = input("What is your Plaintext?")
     shift = int(input("What is your shift?"))
     cipherText = caesar(plainText, shift)
     print("Your ciphertext is: ", cipherText, "with a shift of", shift)
-
-"""
+    
 def decrpyt():
     encryption = input("Enter in your encrypted code")
 
