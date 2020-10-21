@@ -1,9 +1,15 @@
 import random
+import string
+from flask import Flask, request, redirect
 
-alphabet = 'abcdefghijklmnopqrstuvwxyz.,! '  # Note the space at the end, which I kept missing.
+app = Flask(__name__)
 
 
-# You could generate the key below using makeKey (i.e. key=makeKey(alphabet))
+@app.route('/substitution', methods=['GET', 'POST'])
+
+
+alphabet = 'abcdefghijklmnopqrstuvwxyz.,! '
+
 def makeKey(alphabet):
     alphabet = list(alphabet)
     random.shuffle(alphabet)

@@ -23,8 +23,12 @@ def encrypt_example():
             cipherText1 = caesar(plainText1, shift1)
             return '''<h1>The Unencrypted value is: {}</h1>
                                       <h1>The shift value is: {}</h1>'''.format(cipherText1, shift1)
+        elif request.form['submit_button'] == 'Substitution Cipher':
+            return redirect("https://helloworld4415232.herokuapp.com/substitution")
+
 
     return '''<form method="POST">
+                  
                   <h1>Caesar Encryption</h1>  
                   Insert Plaintext: <input type="text" name="plainText"><br>
                   Insert Shift Value: <input type="text" name="var1"><br>
@@ -35,6 +39,9 @@ def encrypt_example():
                   Insert Encrypted Text: <input type="text" name="plainText1"><br>
                   Insert Shift Value: <input type="text" name="var2"><br>
                   <input type="submit" name= "submit_button" value="SubmitDecrypt"><br>
+                  <br><br><br>
+                  <input type="submit" name= "submit_button" value="Substitution Cipher"><br>
+
               </form>'''
 
 
