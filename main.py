@@ -24,7 +24,7 @@ def encrypt_example():
             return '''<h1>The Unencrypted value is: {}</h1>
                                       <h1>The shift value is: {}</h1>'''.format(cipherText1, shift1)
         elif request.form['submit_button'] == 'Substitution Cipher':
-            return redirect("https://helloworld4415232.herokuapp.com/substitution")
+            return redirect('/substitution')
 
 
     return '''<form method="POST">
