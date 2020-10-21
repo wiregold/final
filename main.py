@@ -1,10 +1,16 @@
 import string
-from flask import Flask
+from flask import Flask, request, redirect
 
 app = Flask(__name__)
 
 
 @app.route('/', methods=['GET', 'POST'])
+def signup():
+    email = request.form['email']
+    print("The email address is '" + email + "'")
+    return redirect('/')
+
+""""
 def encrypt():
     plainText = input("What is your Plaintext?")
     shift = int(input("What is your shift?"))
@@ -52,3 +58,4 @@ button3 = Button(menu, text="Exit", command=exit)
 button3.pack()
 
 menu.mainloop()
+"""
