@@ -4,7 +4,7 @@ from flask import Flask, request, redirect
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 def encrypt_example():
     if request.method == 'POST':
         if request.form['submit_button'] == 'SubmitEncrypt':
