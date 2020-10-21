@@ -4,7 +4,7 @@ from flask import Flask
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def encrypt():
     plainText = input("What is your Plaintext?")
     shift = int(input("What is your shift?"))
