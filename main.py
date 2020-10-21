@@ -5,13 +5,12 @@ app = Flask(__name__)
 
 
 @app.route('/', methods=['GET', 'POST'])
-def form_example():
-    if request.method == 'POST':  #this block is only entered when the form is submitted
-        language = request.form.get('language')
-        framework = request.form['framework']
-
-        return '''<h1>The language value is: {}</h1>
-                  <h1>The framework value is: {}</h1>'''.format(language, framework)
+def encrypt_example():
+    if request.method == 'POST':
+        plainText = request.form.get('plainText')
+        shift = request.form['Shift']
+        cipherText = caesar(plainText, shift)
+        return '''<h1>ur ciphertext is{}</h1>'''.format(cipherText)
 
     return '''<form method="POST">
                   Language: <input type="text" name="language"><br>
@@ -19,14 +18,14 @@ def form_example():
                   <input type="submit" value="Submit"><br>
               </form>'''
 
-""""
+
 def encrypt():
     plainText = input("What is your Plaintext?")
     shift = int(input("What is your shift?"))
     cipherText = caesar(plainText, shift)
     print("Your ciphertext is: ", cipherText, "with a shift of", shift)
 
-
+"""
 def decrpyt():
     encryption = input("Enter in your encrypted code")
 
