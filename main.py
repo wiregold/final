@@ -8,13 +8,15 @@ app = Flask(__name__)
 def encrypt_example():
     if request.method == 'POST':
         plainText = request.form.get('plainText')
-        shift = int(input(request.form['shift']))
+        var1 = request.form.get('var1')
+        shift = int(var1)
         cipherText = caesar(plainText, shift)
-        return '''<h1>ur ciphertext is{}</h1>'''.format(cipherText, shift)
+        return '''<h1>The plainText value is: {}</h1>
+                          <h1>The shift value is: {}</h1>'''.format(cipherText, shift)
 
     return '''<form method="POST">
                   plainText: <input type="text" name="plainText"><br>
-                  shift: <input type="text" name="shift"><br>
+                  shift: <input type="text" name="var1"><br>
                   <input type="submit" value="Submit"><br>
               </form>'''
 
@@ -24,8 +26,6 @@ def caesar(plaintext, shift):
     shifted_alphabet = alphabet[shift:] + alphabet[:shift]
     table = str.maketrans(alphabet, shifted_alphabet)
     return plaintext.translate(table)
-
-
 
 
 """
