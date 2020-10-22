@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 
 @app.route('/', methods=['GET', 'POST'])
-def encrypt_example():
+def encrypt_caesar():
     if request.method == 'POST':
         if request.form['submit_button'] == 'SubmitEncrypt':
             plainText = request.form.get('plainText')
@@ -83,7 +83,7 @@ input[type=text], select {
 
 input[type=submit] {
   width: 50%;
-  background-color: #4CAF50;
+  background-color: #7173EB;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -93,7 +93,7 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-  background-color: #45a049;
+  background-color: #2A2DD1;
 }
 label{
     display: inline-block;
