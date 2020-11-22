@@ -1,7 +1,7 @@
 import string
 import random
 from flask import Flask, request, redirect
-app = Flask(_name_)
+app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
