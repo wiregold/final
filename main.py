@@ -1,7 +1,8 @@
 import string
 import random
-from flask import Flask, request, redirect, url_for, session
+from flask import Flask, request, redirect, url_for, session, render_template
 from authlib.integrations.flask_client import OAuth
+from auth_decorator import login_required
 
 app = Flask(__name__)
 app.secret_key = 'random secret'
@@ -23,8 +24,6 @@ google = oauth.register(
 )
 
 
-from auth_decorator import login_required
-
 @app.route('/')
 def start():
     return f'Please redirect to /login to begin'
@@ -33,8 +32,7 @@ def start():
 @app.route('/main')
 @login_required
 def hello_world():
-    email = dict(session).get('email', None)
-    return f'Hello, {email}!'
+    return render_template('index.html')
 
 
 @app.route('/login')
