@@ -1,1 +1,1 @@
-gunicorn project.wsgi:main --preload --workers 1
+heroku ps:scale web=1
