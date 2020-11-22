@@ -1,16 +1,21 @@
-import string
-import random
-from flask import Flask, request, redirect, url_for, session, render_template
+from importlib import import_module
+import os
+from flask import Flask, redirect, url_for, session, render_template, Response
 from authlib.integrations.flask_client import OAuth
 from auth_decorator import login_required
+import cv2
+
+if os.environ.get('CAMERA'):
+    Camera = import_module('camera_' + os.environ['CAMERA']).Camera
+else:
+    from camera import Camera
+
 
 app = Flask(__name__)
 app.secret_key = 'random secret'
 oauth = OAuth(app)
+video = cv2.VideoCapture(0)
 
-
-# oAuth Setup
-oauth = OAuth(app)
 google = oauth.register(
     name='google',
     client_id='303773199618-f4b58nlg6migc21qii5pqm2m3av07qro.apps.googleusercontent.com',
@@ -23,23 +28,41 @@ google = oauth.register(
     client_kwargs={'scope': 'openid email profile'},
 )
 
-
 @app.route('/')
-def start():
-    return f'Please redirect to /login to begin'
-
-
-@app.route('/main')
 @login_required
-def hello_world():
+def root():
+    return render_template('login.html')
+
+
+def gen(camera):
+    while True:
+        while True:
+            frame = camera.get_frame()
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+
+@app.route('/index')
+def index():
     return render_template('index.html')
+
+
+@app.route('/video_feed')
+def video_feed():
+    return Response(gen(Camera()),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+
+
+@app.route('/video')
+def vid():
+    return render_template('video.html')
 
 
 @app.route('/login')
 def login():
+    session['logged_in'] = True
     google = oauth.create_client('google')
     redirect_uri = url_for('authorize', _external=True)
-    session['logged_in'] = True
     return google.authorize_redirect(redirect_uri)
 
 
@@ -51,12 +74,15 @@ def authorize():
     user_info = resp.json()
     session['email'] = user_info['email']
     # do something with the token and profile
-    return redirect('/main')
+    return redirect('/index')
 
 
 @app.route('/logout')
 def logout():
-    session['logged_in'] = False
     for key in list(session.keys()):
         session.pop(key)
-    return redirect('/main')
+    return redirect('/index')
+
+
+if __name__ == '__main__':
+    app.run(host='localhost', port='5000', threaded=True)
