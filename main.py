@@ -11,7 +11,7 @@ def start_ngrok():
     from pyngrok import ngrok
 
     url = '238ffab4d980.ngrok.io'
-
+    print(' * Tunnel URL:', url)
 
 app = Flask(__name__)
 
