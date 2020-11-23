@@ -2,7 +2,13 @@ import os
 import cv2
 from base_camera import BaseCamera
 
+def start_ngrok():
+    from pyngrok import ngrok
 
+    url = 'http://4a604b20d6ac.ngrok.io'
+    print(' * Tunnel URL:', url)
+    
+    
 class Camera(BaseCamera):
     video_source = 0
 
