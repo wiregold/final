@@ -2,14 +2,9 @@ import os
 import cv2
 from base_camera import BaseCamera
 
-def start_ngrok():
-    from pyngrok import ngrok
-
-    url = '238ffab4d980.ngrok.io'
-    
 
 class Camera(BaseCamera):
-    video_source = 0
+    video_source = 'localhost:5000'
 
     def __init__(self):
         if os.environ.get('OPENCV_CAMERA_SOURCE'):
