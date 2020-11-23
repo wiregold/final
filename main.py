@@ -10,7 +10,7 @@ import cv2
 app = Flask(__name__)
 app.secret_key = 'random secret'
 oauth = OAuth(app)
-video = cv2.VideoCapture(-1)
+video = cv2.VideoCapture(0)
 
 google = oauth.register(
     name='google',
