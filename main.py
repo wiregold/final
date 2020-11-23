@@ -3,12 +3,8 @@ import os
 from flask import Flask, redirect, url_for, session, render_template, Response
 from authlib.integrations.flask_client import OAuth
 from auth_decorator import login_required
+from camera_opencv import Camera
 import cv2
-
-if os.environ.get('CAMERA'):
-    Camera = import_module('camera_' + os.environ['CAMERA']).Camera
-else:
-    from camera import Camera
 
 
 app = Flask(__name__)
@@ -28,8 +24,8 @@ google = oauth.register(
     client_kwargs={'scope': 'openid email profile'},
 )
 
+
 @app.route('/')
-@login_required
 def root():
     return render_template('login.html')
 
@@ -85,4 +81,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(host=' http://85069d9f7f57.ngrok.io')
+    app.run(host='localhost', port='5000')
