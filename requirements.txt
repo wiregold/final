@@ -23,5 +23,4 @@ greenlet~=0.4.17
 docutils==0.16
 pillow==8.0.1
 pygments==2.7.2
-opencv-python~=4.4.0.46
 pyngrok~=5.0.0
