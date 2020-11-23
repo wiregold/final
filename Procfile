@@ -1,1 +1,1 @@
-web: gunicorn --bind f741ffb11007.ngrok.io/ main:app
+web: gunicorn --bind 127.0.0.1:4040 main:app
