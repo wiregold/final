@@ -9,7 +9,7 @@ import cv2
 app = Flask(__name__)
 app.secret_key = 'random secret'
 oauth = OAuth(app)
-video = cv2.VideoCapture(-1)
+video = cv2.VideoCapture(0)
 
 google = oauth.register(
     name='google',
@@ -80,4 +80,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(host='localhost', port='5000')
+    app.run(host='0.0.0.0', port='5000')
