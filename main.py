@@ -10,8 +10,7 @@ import cv2
 def start_ngrok():
     from pyngrok import ngrok
 
-    url = 'http://238ffab4d980.ngrok.io'
-    print(' * Tunnel URL:', url)
+    url = '238ffab4d980.ngrok.io'
 
 
 app = Flask(__name__)
