@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 app = Flask(__name__)
 app.secret_key = 'random secret'
 oauth = OAuth(app)
-video = cv2.VideoCapture(0)
+video = cv2.VideoCapture(-1)
 
 google = oauth.register(
     name='google',
