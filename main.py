@@ -10,14 +10,15 @@ import cv2
 def start_ngrok():
     from pyngrok import ngrok
 
-    url = '238ffab4d980.ngrok.io'
+    url = 'http://4a604b20d6ac.ngrok.io'
     print(' * Tunnel URL:', url)
+
 
 app = Flask(__name__)
 
 app.secret_key = 'random secret'
 oauth = OAuth(app)
-video = cv2.VideoCapture(-1)
+video = cv2.VideoCapture(0)
 
 google = oauth.register(
     name='google',
@@ -48,6 +49,11 @@ def gen(camera):
 @app.route('/index')
 def index():
     return render_template('index.html')
+
+
+@app.route('/stream')
+def stream():
+    return render_template('stream.html')
 
 
 @app.route('/video_feed')
@@ -88,4 +94,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5000')
+    app.run(host='localhost', port='5000')
