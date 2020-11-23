@@ -17,7 +17,7 @@ class Camera(BaseCamera):
 
     @staticmethod
     def frames():
-        camera = cv2.VideoCapture(238ffab4d980.ngrok.io/video_feed)
+        camera = cv2.VideoCapture('238ffab4d980.ngrok.io/video_feed')
         if not camera.isOpened():
             raise RuntimeError('Could not start camera.')
 
