@@ -28,7 +28,7 @@ from pyngrok import ngrok
 port = 5000
 
 # Open a ngrok tunnel to the dev server
-public_url = http://4a604b20d6ac.ngrok.io
+public_url = 'http://4a604b20d6ac.ngrok.io'
 
 # Update any base URLs or webhooks to use the public ngrok URL
 app.config["BASE_URL"] = public_url
