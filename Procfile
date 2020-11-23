@@ -1,1 +1,1 @@
-web: gunicorn --bind http://f741ffb11007.ngrok.io main:app
+web: gunicorn --bind f741ffb11007.ngrok.io/ main:app
