@@ -5,7 +5,9 @@ from authlib.integrations.flask_client import OAuth
 from auth_decorator import login_required
 from camera_opencv import Camera
 import cv2
-
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 app.secret_key = 'random secret'
