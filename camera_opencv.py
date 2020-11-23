@@ -4,7 +4,7 @@ from base_camera import BaseCamera
 
 
 class Camera(BaseCamera):
-    video_source = 0
+    video_source = '238ffab4d980.ngrok.io/video_feed'
 
     def __init__(self):
         if os.environ.get('OPENCV_CAMERA_SOURCE'):
@@ -17,7 +17,7 @@ class Camera(BaseCamera):
 
     @staticmethod
     def frames():
-        camera = cv2.VideoCapture('238ffab4d980.ngrok.io/video_feed')
+        camera = cv2.VideoCapture(Camera.video_source)
         if not camera.isOpened():
             raise RuntimeError('Could not start camera.')
 
