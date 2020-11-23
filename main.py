@@ -16,7 +16,6 @@ def init_webhooks(base_url):
     # Initialize our ngrok settings into Flask
     app.config.from_mapping(
         BASE_URL="http://localhost:5000",
-        USE_NGROK=os.environ.get("USE_NGROK", "False") == "True" and os.environ.get("WERKZEUG_RUN_MAIN") != "true"
     )
 
     # pyngrok will only be installed, and should only ever be initialized, in a dev environment
@@ -29,8 +28,7 @@ from pyngrok import ngrok
 port = 5000
 
 # Open a ngrok tunnel to the dev server
-public_url = ngrok.connect(port).public_url
-print(" * ngrok tunnel \"{}\" -> \"http://127.0.0.1:{}\"".format(public_url, port))
+public_url = http://4a604b20d6ac.ngrok.io
 
 # Update any base URLs or webhooks to use the public ngrok URL
 app.config["BASE_URL"] = public_url
