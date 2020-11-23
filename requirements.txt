@@ -12,7 +12,7 @@ itsdangerous==1.1.0
 Jinja2==2.11.2
 MarkupSafe==1.1.1
 numpy==1.19.4
-opencv-python-headless==4.4.0.46
+opencv-python==4.4.0.46
 pycparser==2.20
 requests==2.25.0
 six==1.15.0
