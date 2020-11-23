@@ -4,7 +4,7 @@ from base_camera import BaseCamera
 
     
 class Camera(BaseCamera):
-    video_source =  '4a604b20d6ac.ngrok.io'
+    video_source = '4a604b20d6ac.ngrok.io'
 
     def __init__(self):
         if os.environ.get('OPENCV_CAMERA_SOURCE'):
