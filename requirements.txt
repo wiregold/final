@@ -19,3 +19,5 @@ six==1.15.0
 urllib3==1.26.2
 Werkzeug==1.0.1
 gevent==20.9.0
+opencv-python~=4.4.0.46
+greenlet~=0.4.17
