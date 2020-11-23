@@ -17,7 +17,7 @@ app = Flask(__name__)
 
 app.secret_key = 'random secret'
 oauth = OAuth(app)
-video = cv2.VideoCapture('238ffab4d980.ngrok.io/video_feed')
+video = cv2.VideoCapture(-1)
 
 google = oauth.register(
     name='google',
