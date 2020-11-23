@@ -6,33 +6,15 @@ from auth_decorator import login_required
 from camera_opencv import Camera
 import cv2
 
+
+def start_ngrok():
+    from pyngrok import ngrok
+
+    url = 'http://4a604b20d6ac.ngrok.io'
+    print(' * Tunnel URL:', url)
+
+
 app = Flask(__name__)
-
-
-def init_webhooks(base_url):
-    # Update inbound traffic via APIs to use the public-facing ngrok URL
-    pass
-
-    # Initialize our ngrok settings into Flask
-    app.config.from_mapping(
-        BASE_URL="http://localhost:5000",
-    )
-
-    # pyngrok will only be installed, and should only ever be initialized, in a dev environment
-
-
-from pyngrok import ngrok
-
-# Get the dev server port (defaults to 5000 for Flask, can be overridden with `--port`
-# when starting the server
-port = 5000
-
-# Open a ngrok tunnel to the dev server
-public_url = 'http://4a604b20d6ac.ngrok.io'
-
-# Update any base URLs or webhooks to use the public ngrok URL
-app.config["BASE_URL"] = public_url
-init_webhooks(public_url)
 
 app.secret_key = 'random secret'
 oauth = OAuth(app)
@@ -49,13 +31,6 @@ google = oauth.register(
     api_base_url='https://www.googleapis.com/oauth2/v1/',
     client_kwargs={'scope': 'openid email profile'},
 )
-
-
-def start_ngrok():
-    from pyngrok import ngrok
-
-    url = ngrok.connect(5000)
-    print(' * Tunnel URL:', url)
 
 
 @app.route('/')
@@ -114,4 +89,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5000')
+    app.run(host='localhost', port='5000')
