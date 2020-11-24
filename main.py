@@ -60,6 +60,10 @@ def vid():
     return render_template('video.html')
 
 
+@app.route('/videostreamed')
+def vidstreamed():
+    return render_template('videostreamed.html')
+
 @app.route('/login')
 def login():
     session['logged_in'] = True
