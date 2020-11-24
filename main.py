@@ -7,13 +7,6 @@ from camera_opencv import Camera
 import cv2
 
 
-def start_ngrok():
-    from pyngrok import ngrok
-
-    url = 'http://4a604b20d6ac.ngrok.io'
-    print(' * Tunnel URL:', url)
-
-
 app = Flask(__name__)
 
 app.secret_key = 'random secret'
@@ -82,7 +75,6 @@ def authorize():
     resp = google.get('userinfo')
     user_info = resp.json()
     session['email'] = user_info['email']
-    # do something with the token and profile
     return redirect('/index')
 
 
